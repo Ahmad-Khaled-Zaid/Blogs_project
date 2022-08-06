@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     # Local
     "accounts",
-    "pages",
+    "core",
 ]
 
 # MIDDLEWARE

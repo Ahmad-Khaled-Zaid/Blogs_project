@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+
+{% block content %}
+{% for book in object_list %}
+<h1 ><a href="{% url 'details_view' book.pk %}">{{book}}</a></h1>
+{%endfor%}
+
+<a href="{% url 'create_view' %}">Add new book</a>
+
+{%endblock content%}

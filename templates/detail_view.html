@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1>{{book.title}}</h1>
+<h1>{{book.purchaser}}</h1>
+<h1>{{book.description}}</h1>
+<h1>{{book.register_model}}</h1>
+<a href="{% url 'update_view' book.pk%}">Update</a>
+<a href="{% url 'delete_view' book.pk%}">Delete</a>
+<a href="{% url 'list_view'%}">List</a>
+{%endblock content%}
