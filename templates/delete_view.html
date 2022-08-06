@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+<h1>Delete Book </h1>
+{% block content %}
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <h2>Are you sure you want to delete  {{book.book_title}}</h2>
+    <input type="submit">
+</form>
+{%endblock content%}
