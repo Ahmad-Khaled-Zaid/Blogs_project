@@ -4,13 +4,13 @@ from django.contrib.auth import get_user_model
 from .models import Book
 
 
-class SnackTest(TestCase):
+class BookTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(username='test', email='test@test.com', password='test')
-        self.snack = Book.objects.create(
-            title='mentos',
+        self.book = Book.objects.create(
+            book_title='good habits',
             purchaser=self.user,
-            description="hot"
+            description="self development"
         )
 
     def test_list_status(self):
@@ -26,11 +26,11 @@ class SnackTest(TestCase):
 
     #
     def test_str_method(self):
-        self.assertEqual(str(self.snack), 'mentos')
+        self.assertEqual(str(self.book), 'good habits')
 
     #
     def test_detail_view(self):
-        url = reverse('details_view', args=[self.snack.id])
+        url = reverse('details_view', args=[self.book.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'detail_view.html')
@@ -38,18 +38,18 @@ class SnackTest(TestCase):
     def test_create_view(self):
         url = "create_view"
         data = {
-            "title": "Chocolate",
+            "book_title": "physics",
             "purchaser": self.user.id,
-            "description": "Details about Chocolate",
+            "description": "basic roles in pyhsics",
         }
         response = self.client.post(reverse(url), data, follow=True)
         self.assertRedirects(response, reverse('details_view', args="2"))
 
     def test_update_view(self):
         response = self.client.post(reverse("update_view", args="1"), {
-            "title": "Choco",
+            "book_title": "physics",
             "purchaser": self.user.id,
-            "description": "Details about Chocolate",
+            "description": "basic roles in pyhsics",
         }, )
         self.assertRedirects(response, reverse('details_view', args="1"))
 
